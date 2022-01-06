@@ -6,8 +6,8 @@ import altair as alt
 from PIL import Image
 
 with st.sidebar:
-    selected = option_menu("Main Menu", ["Home", 'Text', 'Data', 'Widgets','Structure'],
-        icons=['house', 'text-left','clipboard-data','download','building'], menu_icon="menu-app", default_index=1)
+    selected = option_menu("Main Menu", ["Home", 'Text', 'Data', 'Widgets','Structure',"State management"],
+        icons=['house','text-left','clipboard-data','download','building','clock'], menu_icon="menu-app", default_index=1)
     st.markdown("Author: [Giancarlo Di Donato](https://www.linkedin.com/in/giancarlodidonato/)")
    
 if selected == "Home":
@@ -181,5 +181,24 @@ if selected == "Structure":
             with col2:
                 with st.expander("Expander 2"):
                     st.write("Other text")
-            
+
+if selected == "State management":
+    st.title("How to manage the session state (WIP)")     
+    st.subheader("Session State is a way to share variables between reruns, for each user session. In addition to the ability to store and persist state.")       
+
+    with st.echo():
+
+
+        ## Every widget with a key is automatically added to Session State:
+        input = st.radio("Assign a value",["1","2","3","4"])
+        if input:
+            st.session_state.key = input
+        
+        st.write(f'The key of the widget is now {st.session_state.key}')
+        
+        delete = st.button("Delete value")
+        if delete:
+            del st.session_state.key
+            st.write("value:" ,st.session_state)
+
     
