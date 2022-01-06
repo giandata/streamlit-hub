@@ -7,7 +7,7 @@ from PIL import Image
 
 with st.sidebar:
     selected = option_menu("Main Menu", ["Home", 'Text', 'Data', 'Widgets','Structure',"State management"],
-        icons=['house','text-left','clipboard-data','download','building','clock'], menu_icon="menu-app", default_index=1)
+        icons=['house','text-left','clipboard-data','download','building','clock'], menu_icon="menu-app", default_index=0)
     st.markdown("Author: [Giancarlo Di Donato](https://www.linkedin.com/in/giancarlodidonato/)")
    
 if selected == "Home":
