@@ -3,6 +3,7 @@ from streamlit_option_menu import option_menu
 import numpy as np
 import pandas as pd
 import altair as alt
+from PIL import Image
 
 
 with st.sidebar:
@@ -12,22 +13,26 @@ with st.sidebar:
    
 
 if selected == "Home":
-    st.title ("Cheat sheet App")
+    st.title ("How To Streamlit App")
     st.subheader("This is a showcase of most useful Streamlit APIs")
     st.markdown('''Read the [docs] (https://docs.streamlit.io/library/api-reference) for a complete reference of all Streamlit widgets and features.''')
     
     st.write('Use the sidebar menu to navigate the groups of widgets.')
 
-    st.write("To start using Streamlit’s open-source app framework it’s just a matter of installing :")
+    image = Image.open('streamlit-logo-primary-colormark-darktext.png')
+
+    st.image(image)
+
+    st.write("To start using Streamlit’s open-source app framework it’s just a matter of installing it in a dedicated environment:")
     st.code ("pip install streamlit")
     
-    st.write("execute the script from the environment with Streamlit:")
+    st.write("then create a script and execute from the terminal:")
     st.code("streamlit run your_app.py")
 
     st.write("and it will open locally in a browser tab.")
 
 if selected == "Text":
-    st.title ("Display text")
+    st.title ("How to display text")
     st.write("Streamlit provides several ways to display text:")
 
     with st.echo():
@@ -49,7 +54,7 @@ if selected == "Text":
     st.code(code, language='python')
 
 if selected == "Data":
-    st.title ("Display Data")
+    st.title ("How to display Data")
 
     df = pd.DataFrame(
     np.random.randn(50, 10),
@@ -130,8 +135,5 @@ if selected == "Widgets":
                 
         submitted = st.form_submit_button("Submit")
 
-             
-
-
 if selected == "Structure":
-    st.title("Organize the layout of your app")
+    st.title("How to organize the layout of your app")
