@@ -5,16 +5,14 @@ import pandas as pd
 import altair as alt
 from PIL import Image
 
-
 with st.sidebar:
     selected = option_menu("Main Menu", ["Home", 'Text', 'Data', 'Widgets','Structure'],
         icons=['house', 'text-left','clipboard-data','download','building'], menu_icon="menu-app", default_index=1)
     st.markdown("Author: [Giancarlo Di Donato](https://www.linkedin.com/in/giancarlodidonato/)")
    
-
 if selected == "Home":
     st.title ("How To Streamlit App")
-    st.subheader("This is a showcase of most useful Streamlit APIs")
+    st.subheader("This app is a showcase of most useful Streamlit APIs")
     st.markdown('''Read the [docs] (https://docs.streamlit.io/library/api-reference) for a complete reference of all Streamlit widgets and features.''')
     
     st.write('Use the sidebar menu to navigate the groups of widgets.')
@@ -56,6 +54,8 @@ if selected == "Text":
 if selected == "Data":
     st.title ("How to display Data")
 
+    st.subheader("Streamlit is a lightning fast framework great for Data Science: it allows to load, process, visualize and export data ")
+
     df = pd.DataFrame(
     np.random.randn(50, 10),
     columns=('col %d' % i for i in range(10)))
@@ -65,7 +65,7 @@ if selected == "Data":
         
         st.dataframe(df)
 
-    st.subheader("Show some metrics:")
+    st.subheader("Show visual metrics:")
     with st.echo():    
         col1, col2, col3 = st.columns(3)
         col1.metric("Temperature", "20 °C", "1.0 °C")
@@ -95,17 +95,17 @@ if selected == "Data":
 if selected == "Widgets":
     st.title("The widgets enhance the interactivity of the applications.")
     
-    st.write("A simple button to execute actions")
+    st.subheader("A simple button to execute actions")
     with st.echo():
         ## Button
         clicked = st.button(label="Click me")
         if clicked:
             st.write("Click event")
 
-    st.write("Or a container of widgets ")
+    st.write("Since the app reruns entirely at every user interaction, it is possible to use a form to control the flow and pass all the input paramenters at once, clicking on the submit button")
+
     with st.form("Widget form"):
         st.subheader("This is a form")
-        st.write("Since the app reruns entirely at every user interaction, it is possible to use a form to control the flow and pass all the input paramenters at once, clicking on the submit button")
         
         with st.echo():
             
@@ -137,3 +137,32 @@ if selected == "Widgets":
 
 if selected == "Structure":
     st.title("How to organize the layout of your app")
+    st.subheader("Streamlit provides several options for controlling different elements are laid out on the screen. The most useful are the columns, the expanders and the sidebar.")
+    with st.container():
+        with st.echo():
+
+            col1,col2 = st.columns(2)
+
+            with col1:
+                st.header("Column 1")
+                widget= st.radio("How you find Streamlit?",["Awesome","Cool","Fantastic"])
+            
+            with col2:
+                st.header("Column 2")
+                widget2 = st.radio("Will you use Streamlit?",["Maybe","For sure","Can't wait!"])
+
+    st.write("This is outside the container. It is possible to stack up multiple containers:")
+    
+    with st.container():
+        col1,col2 = st.columns(2)
+
+        with st.echo():
+            with col1:
+                with st.expander("Expander 1"):
+                    st.write("Some text")
+
+            with col2:
+                with st.expander("Expander 2"):
+                    st.write("Other text")
+            
+    
