@@ -11,16 +11,17 @@ with st.sidebar:
     st.markdown("Author: [Giancarlo Di Donato](https://www.linkedin.com/in/giancarlodidonato/)")
    
 if selected == "Home":
-    st.title ("How To Streamlit App")
+    st.title ("How To Streamlit ")
     st.subheader("This app is a showcase of most useful Streamlit APIs")
     st.markdown('''Read the [docs] (https://docs.streamlit.io/library/api-reference) for a complete reference of all Streamlit widgets and features.''')
     
-    st.write('Use the sidebar menu to navigate the groups of widgets.')
+    st.write('Use the sidebar menu to navigate the app through the sections.')
 
     image = Image.open('streamlit-logo-primary-colormark-darktext.png')
 
     st.image(image)
 
+    st.subheader("Get started")
     st.write("To start using Streamlit’s open-source app framework it’s just a matter of installing it in a dedicated environment:")
     st.code ("pip install streamlit")
     
@@ -51,14 +52,22 @@ if selected == "Text":
         print("Hello, Streamlit!")'''
     st.code(code, language='python')
 
+    st.subheader("Displays notifications with variants:")
+
+    with st.echo():
+        st.info("Info message")
+        st.success("Success message")
+        st.warning("warning message")
+        st.error("Error message")
+
 if selected == "Data":
     st.title ("How to display Data")
 
     st.subheader("Streamlit is a lightning fast framework great for Data Science: it allows to load, process, visualize and export data ")
 
     df = pd.DataFrame(
-    np.random.randn(50, 10),
-    columns=('col %d' % i for i in range(10)))
+        np.random.randn(50, 10),
+        columns=('col %d' % i for i in range(10)))
 
     st.subheader("Show a dataframe:")
     with st.echo():
@@ -75,10 +84,10 @@ if selected == "Data":
 
     st.subheader("Or show charts from multiple libraries:")
     with st.echo():    
-        ##native Streamlit library
+        ##native Streamlit chart library
         chart_data = pd.DataFrame(
-        np.random.randn(20, 3),
-        columns=['a', 'b', 'c'])
+            np.random.randn(20, 3),
+            columns=['a', 'b', 'c'])
 
         st.line_chart(chart_data)
 
@@ -116,10 +125,10 @@ if selected == "Widgets":
             radio = st.radio("Radio Button:",["Fish","Birds","Mammals"])
 
             ## Selector
-            select = st.selectbox("Selectbox:",["Cats","Dogs","Mices"],help =" Information tooltip")
+            select = st.selectbox("Selectbox:",["Cats","Dogs","Mices"],help ="Select only one element")
 
             ## Multiselector
-            multiselect = st.multiselect("Teams:",["Barcelona","Naples","Rome","Madrid"],help =" Information tooltip")
+            multiselect = st.multiselect("Teams:",["Barcelona","Naples","Rome","Madrid"],help ="Select multiple elements")
 
             ## Text input
             text = st.text_input("Insert your name")
@@ -134,6 +143,14 @@ if selected == "Widgets":
             agree = st.checkbox('I agree')
                 
         submitted = st.form_submit_button("Submit")
+
+    st.subheader("There are also widgets to upload or download data:")
+
+    with st.echo():
+        input = st.file_uploader("Load file")
+
+        data = "Some data"
+        output = st.download_button("Download file", data)
 
 if selected == "Structure":
     st.title("How to organize the layout of your app")
