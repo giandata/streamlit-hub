@@ -15,7 +15,7 @@ if selected == "Home":
     st.subheader("This app is a showcase of most useful Streamlit APIs")
     st.markdown('''Read the [docs] (https://docs.streamlit.io/library/api-reference) for a complete reference of all Streamlit widgets and features.''')
     
-    st.write('Use the sidebar menu to navigate the app through the sections.')
+    
 
     image = Image.open('streamlit-logo-primary-colormark-darktext.png')
 
@@ -29,6 +29,9 @@ if selected == "Home":
     st.code("streamlit run your_app.py")
 
     st.write("and it will open locally in a browser tab.")
+
+    st.info('Use the sidebar menu to navigate the app through the sections. (Click on left top arrow to open it)')
+
 
 if selected == "Text":
     st.title ("How to display text")
